@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<br>
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <i class="fas fa-table me-1"></i>
+        
+        <a href="{% url 'departamentos:crear_departamento' %}" class="btn btn-info" role="button">Crear</a>
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>{{object.codigo}}</td>
+                        <td>{{object.nombre}}</td>
+                        <td>{{object.descripcion}}</td>
+                        <td>
+                            <a href="{% url 'departamentos:editar_departamento' object.pk  %}" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="{% url 'departamentos:delete_departamento' object.pk  %}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

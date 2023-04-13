@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<br>
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <i class="fas fa-table me-1"></i>
+        
+        <a href="{% url 'empleados:crear_empleado' %}" class="btn btn-info" role="button">Crear</a>
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Departamento</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>{{object.codigo}}</td>
+                        <td>{{object.nombres}}</td>
+                        <td>{{object.apellidos}}</td>
+                        <td>{{object.fecha_nacimiento}}</td>
+                        <td>{{object.departamento}}</td>
+                        <td>
+                            <a href="{% url 'empleados:editar_empleado' object.pk  %}" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                            <a href="{% url 'empleados:delete_empleado' object.pk  %}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

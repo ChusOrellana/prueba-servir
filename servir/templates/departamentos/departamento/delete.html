@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Eliminar departamento
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+
+            <p> Esta seguro de eliminar el departamento {{object}}> </p>
+            <br>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
